@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		int[] input = new int[num];
+
+		for(int i = 0; i < num; i++){
+			input[i] = sc.nextInt();
+		}
+
+		int[] sorted = input.clone();
+		Arrays.sort(sorted);
+
+		List<Integer> diff = new ArrayList<>();
+
+		for(int i = 0; i < num; i++){
+			if(input[i] != sorted[i]){
+				diff.add(i);
+			}
+		}
+
+		if(diff.isEmpty()){
+			System.out.println("yes");
+		}else{
+			int first = diff.get(0);
+			int last = diff.get(diff.size()-1);
+
+			int[] swapArr = input.clone();
+			int temp = swapArr[first];
+			swapArr[first] = swapArr[last];
+			swapArr[last] = temp;
+
+			if(Arrays.equals(swapArr, sorted)){
+				System.out.println("yes");
+        System.out.println("swap " + (first + 1) + " " + (last + 1));
+			}else{
+				int[] revArr = input.clone();
+				int l = first;
+				int r = last;
+				
+				while(l < r){
+					int t = revArr[l];
+					revArr[l] = revArr[r];
+					revArr[r] = t;
+					l++;
+					r--;
+				}
+
+				if(Arrays.equals(revArr, sorted)){
+					System.out.println("yes");
+                    System.out.println("reverse " + (first + 1) + " " + (last + 1));
+				}else{
+					System.out.println("no");
+				}
+		
+			}
+		}
+		
+	}
+}
