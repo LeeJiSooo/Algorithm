@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int num = Integer.parseInt(br.readLine());
+
+		int[] people = new int[num];
+
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		for(int i = 0; i < num; i++){
+			people[i] = Integer.parseInt(st.nextToken());
+		}
+
+		int[] sorted = people.clone();
+		Arrays.sort(sorted);
+		for(int i = 0; i < num / 2; i++){
+			int temp = sorted[i];
+			sorted[i] = sorted[num - 1 - i];
+			sorted[num - 1 - i] = temp;
+		}
+
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < num; j++){
+				if(sorted[i] == people[j]){
+					System.out.printf((j + 1) + " " );
+				}
+			}
+		}
+		System.out.printf("\n");
+	}
+}
