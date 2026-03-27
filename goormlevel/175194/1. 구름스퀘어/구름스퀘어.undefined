@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+
+		int[][] events = new int[N][2];
+
+		for(int i = 0; i < N; i++){
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			events[i][0] = Integer.parseInt(st.nextToken());
+			events[i][1] = Integer.parseInt(st.nextToken());
+		}
+
+		Arrays.sort(events, (o1, o2) ->{
+			if(o1[1] == o2[1]){
+				return o1[0] - o2[0];
+			}else{
+				return o1[1] - o2[1];
+			}
+		});
+
+		int count = 0;
+		long lastEndTime = -2;
+
+		for(int i = 0; i < N; i++){
+			int currentStart = events[i][0];
+			int currentEnd = events[i][1];
+
+			if(currentStart >= lastEndTime + 1){
+				count++;
+				lastEndTime = currentEnd;
+			}
+		}
+		
+		System.out.println(count);
+	}
+}
