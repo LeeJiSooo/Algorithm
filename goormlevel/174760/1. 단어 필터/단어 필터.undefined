@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int sLen = Integer.parseInt(st.nextToken());
+		int eLen = Integer.parseInt(st.nextToken());
+
+		String S = br.readLine();
+		String E = br.readLine();
+
+		while(E.contains(S)){
+			E = E.replaceFirst(S, "");
+		}
+
+		if(E.isEmpty()){
+			System.out.println("EMPTY");
+		}else{
+			System.out.println(E);
+		}
+	}
+}
