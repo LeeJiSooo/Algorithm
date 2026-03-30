@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String input = br.readLine();
+		StringTokenizer st = new StringTokenizer(input);
+
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+
+		HashSet<Integer> cards = new HashSet<>();
+		int result = -1;
+
+		for(int i = 1; i <= M; i++){
+			int cardNum = Integer.parseInt(br.readLine());
+
+			cards.add(cardNum);
+
+			if(cards.size() == N){
+				result = i;
+				break;
+			}
+		}
+		System.out.println(result);
+	}
+}
