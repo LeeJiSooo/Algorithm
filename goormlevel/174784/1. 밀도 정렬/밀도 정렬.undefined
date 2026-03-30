@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+
+		int maxW = 0;
+		int maxV = 1;
+		int maxId = 0;
+
+		for(int i = 0; i < N; i++){
+			StringTokenizer st = new StringTokenizer(br.readLine());
+
+			int curW = Integer.parseInt(st.nextToken());
+			int curV = Integer.parseInt(st.nextToken());
+
+			int curVal = curW * maxV;
+			int maxVal = maxW * curV;
+
+			if(curVal > maxVal){
+				maxW = curW;
+				maxV = curV;
+				maxId = i;
+			}else if(curVal == maxVal){
+				if(curW > maxW){
+					maxW = curW;
+					maxV = curV;
+					maxId = i;
+				}
+			}
+		}
+		System.out.println(maxId + 1);
+	}
+}
