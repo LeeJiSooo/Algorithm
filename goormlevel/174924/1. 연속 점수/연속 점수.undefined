@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		int first = Integer.parseInt(st.nextToken()); 
+		int maxNum = first; 
+		int maxSum = first;
+		int currentSum = first;
+		int prev = first;
+		
+		for(int i = 1; i < N; i++){
+				int input = Integer.parseInt(st.nextToken());
+
+				// 방법 A 
+				if(maxNum < input){
+					maxNum = input;
+				}
+
+				// 방법 B
+				if(input == prev + 1){
+					currentSum += input;
+					
+				}else{
+					currentSum = input;
+				}
+			
+				if(maxSum < currentSum){
+						maxSum = currentSum;
+				}
+
+				prev = input;
+		}
+
+		System.out.println(Math.max(maxNum, maxSum));
+		
+	}
+}
