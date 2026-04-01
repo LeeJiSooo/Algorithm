@@ -1,0 +1,32 @@
+import java.util.*;
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        String answer = "";
+        
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < participant.length; i++){
+            String player = participant[i];
+            
+            if(map.containsKey(player)){
+                map.put(player, map.get(player) + 1);
+            }else{
+                map.put(player, 1);
+            }
+        }
+        
+        for(int i = 0; i < completion.length; i++){
+            String player = completion[i];
+            map.put(player, map.get(player) - 1);
+        }
+        
+        for(String key : map.keySet()){
+            if(map.get(key) != 0){
+                answer = key;
+                break;
+            }
+        }
+        
+        return answer;
+    }
+}
